@@ -15,14 +15,8 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag fherling-ocr:$(date +%s)
-
-  push:
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-    - name: Push the Docker image to the repository
       run: |
-        echo ${{ secrets.GITHUB_TOKEN }} | docker login ghcr.io -u ${{ github.actor }} --password-stdin
+        docker build . --file Dockerfile --tag fherling-ocr:$(date +%s)
+        docker login ghcr.io -u ${{ github.actor }} --password-stdin
         docker tag fherling-ocr:$(date +%s) ghcr.io/fherling/fherling-ocr:$(date +%s)
         docker push ghcr.io/fherling/fherling-ocr:$(date +%s)    
