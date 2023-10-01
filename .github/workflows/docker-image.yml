@@ -16,7 +16,7 @@ jobs:
     - uses: actions/checkout@v3
     - name: Build the Docker image
       run: |
-        docker build . --file Dockerfile --tag fherling-ocr:$(date +%s)
+        docker build . --file Dockerfile --tag fherling-ocr:latest
         echo ${{ secrets.GITHUB_TOKEN }} | docker login ghcr.io -u ${{ github.actor }} --password-stdin
-        docker tag fherling-ocr:$(date +%s) ghcr.io/fherling/fherling-ocr:$(date +%s)
-        docker push ghcr.io/fherling/fherling-ocr:$(date +%s)    
+        docker tag fherling-ocr:$(date +%s) ghcr.io/fherling/fherling-ocr:latest
+        docker push ghcr.io/fherling/fherling-ocr:latest
