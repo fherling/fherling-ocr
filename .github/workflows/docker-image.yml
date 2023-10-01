@@ -20,5 +20,4 @@ jobs:
         echo ${{ secrets.GITHUB_TOKEN }} | docker login ghcr.io -u ${{ github.actor }} --password-stdin
         docker tag fherling-ocr:latest ghcr.io/fherling/fherling-ocr:latest
         docker push ghcr.io/fherling/fherling-ocr:latest
-
         
