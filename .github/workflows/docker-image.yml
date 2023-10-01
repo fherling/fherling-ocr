@@ -18,5 +18,5 @@ jobs:
       run: |
         docker build . --file Dockerfile --tag fherling-ocr:latest
         echo ${{ secrets.GITHUB_TOKEN }} | docker login ghcr.io -u ${{ github.actor }} --password-stdin
-        docker tag fherling-ocr:$(date +%s) ghcr.io/fherling/fherling-ocr:latest
+        docker tag fherling-ocr:latest ghcr.io/fherling/fherling-ocr:latest
         docker push ghcr.io/fherling/fherling-ocr:latest
