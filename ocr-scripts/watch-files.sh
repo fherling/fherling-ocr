@@ -7,5 +7,5 @@ inotifywait -m -e create -e moved_to --format "%w%f" $directory_to_watch \
             echo "********************"
             echo Detected new or moved file: $FILENAME
             ./ocr-file.sh "$FILENAME"
+            echo "********************"
         done
-        
