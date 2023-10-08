@@ -5,7 +5,7 @@ USER root
 RUN apt update
 
 #RUN apt install inotify-tools -y
-RUN apt install curl git inotify-tools -y
+RUN apt install curl git inotify-tools file -y
 
 COPY ./ocr-scripts /ocr-scripts      
 RUN mkdir /ocr-input

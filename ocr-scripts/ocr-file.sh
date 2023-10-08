@@ -1,18 +1,28 @@
 #!/bin/bash
 echo "OCR-input $1"
 
-inputfile=$1
-inputdirectory=${inputfile%/*}
-outputdirectory=${inputdirectory//ocr-input/ocr-output}
-mkdir -p $outputdirectory
-outputfile=${inputfile//ocr-input/ocr-output}
+tagesdatum=$(date +%Y-%m-%d)
+inputfile="$1"
 
-echo "OCR-output $outputfile"
 
-if [ ! -d "$inputfile" ]
-then
-    /usr/local/bin/ocrmypdf --redo-ocr -l deu+eng $inputfile $outputfile
-    echo 'OCR complete'
+if [  -f "$inputfile" ]; then
+
+    outputfilename=$(basename "$inputfile")
+    outputdirectory=$(dirname "$inputfile")
+    outputdirectory="${outputdirectory//ocr-input/ocr-output}"
+    outputdirectory="$outputdirectory/$tagesdatum"
+    mkdir -p "$outputdirectory"
+    outputfile=$outputdirectory/$outputfilename
+    echo "OCR-output $outputfile"
+
+    mimetype=$(file --mime-type -b "$inputfile")
+    echo "Mimetype: ${mimetype}"
+    if [ "$mimetype" = "application/pdf" ]; then
+            /usr/local/bin/ocrmypdf --redo-ocr -l deu+eng "$inputfile" "$outputfile"
+            echo 'OCR complete'
+    else
+            echo 'Wrong file type. OCR skipped'
+    fi
 else
-    echo 'OCR skipped'    
+    echo 'Input is a directory. OCR skipped'    
 fi
