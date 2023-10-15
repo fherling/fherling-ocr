@@ -7,9 +7,9 @@ RUN apt update
 #RUN apt install inotify-tools -y
 RUN apt install curl git inotify-tools file -y
 
-COPY ./ocr-scripts /ocr-scripts      
 RUN mkdir /ocr-input
 RUN mkdir /ocr-output
+COPY ./ocr-scripts /ocr-scripts      
 
 WORKDIR /ocr-scripts
 

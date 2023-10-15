@@ -18,7 +18,7 @@ if [  -f "$inputfile" ]; then
     mimetype=$(file --mime-type -b "$inputfile")
     echo "Mimetype: ${mimetype}"
     if [ "$mimetype" = "application/pdf" ]; then
-            /usr/local/bin/ocrmypdf --redo-ocr -l deu+eng "$inputfile" "$outputfile"
+            /usr/local/bin/ocrmypdf --clean --tesseract-timeout 600 --force-ocr -l deu "$inputfile" "$outputfile"
             echo 'OCR complete'
     else
             echo 'Wrong file type. OCR skipped'
