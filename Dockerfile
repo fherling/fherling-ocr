@@ -1,10 +1,10 @@
-FROM jbarlow83/ocrmypdf
+ARG ARCH=
+FROM ${ARCH}jbarlow83/ocrmypdf
 
 # Install dependencies
 USER root
-RUN apt update
+RUN apt update && apt upgrade -y
 
-#RUN apt install inotify-tools -y
 RUN apt install curl git inotify-tools file -y
 
 RUN mkdir /ocr-input
