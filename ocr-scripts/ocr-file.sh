@@ -2,7 +2,7 @@
 # OCR script for OCRmyPDF
 echo "Run with ocrmyPDF version $(/usr/local/bin/ocrmypdf --version)"
 echo "OCR-input $1"
-
+echo $(id)
 tagesdatum=$(date +%Y-%m-%d)
 inputfile="$1"
 
