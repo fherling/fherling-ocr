@@ -1,2 +1,3 @@
 # fherling-ocr
-Hier muss noch was hin. 
+
+OCR gescannte PDFs mit ocrmypdf
